@@ -5,7 +5,7 @@ from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 
 # Define your bot token
-TOKEN = 'bot_token_here'
+TOKEN = '6005891028:AAHJ1sGtywfpmDiQs0nskgBmb55OpiN2Zs0'
 
 # Create an updater and pass in your bot token
 updater = Updater(token=TOKEN)

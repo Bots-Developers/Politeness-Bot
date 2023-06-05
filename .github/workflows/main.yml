@@ -3,7 +3,7 @@ name: Deploy Bot
 on:
   push:
     branches:
-      - master  # Change this to your preferred branch name
+      - main  # Change this to your preferred branch name
 
 jobs:
   deploy:
