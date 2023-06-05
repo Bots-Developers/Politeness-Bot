@@ -7,8 +7,8 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 
 # Retrieve the bot token from the repository secrets or environment variables
 TOKEN = os.getenv('TOKEN')
-admin_username = os.getenv('ADMIN_NAME')
-pre_selected_username = os.getenv('SELECTED_USER')
+ADMIN_USERNAME = os.getenv('ADMIN_NAME')
+PRE_SELECTED_USERNAME = os.getenv('SELECTED_USER')
 
 # Create an updater and pass in your bot token
 updater = Updater(token=TOKEN)
@@ -20,7 +20,7 @@ words_to_reply = ['كلب' , 'خولات', 'خول', 'الكلب']  # Add the wo
 
 # Define the command for adding a word to the delete list and check if the user is admin
 def add_delete_word(update, context):
-    if update.message.from_user.username == admin_username:
+    if update.message.from_user.username == ADMIN_USERNAME:
         if len(context.args) > 0:
             new_word = ' '.join(context.args)
             # Add the new word to the delete list
@@ -36,7 +36,7 @@ dispatcher.add_handler(add_delete_word_handler)
 
 # Define the command for removing a word from the delete list and check if the user is admin
 def remove_delete_word(update, context):
-    if update.message.from_user.username == admin_username:
+    if update.message.from_user.username == ADMIN_USERNAME:
         if len(context.args) > 0:
             word_to_remove = ' '.join(context.args)
             # Remove the word from the delete list
@@ -52,7 +52,7 @@ dispatcher.add_handler(remove_delete_word_handler)
 
 # Define the command for listing the words in the delete list and check if the user is admin
 def list_delete_words(update, context):
-    if update.message.from_user.username == admin_username:
+    if update.message.from_user.username == ADMIN_USERNAME:
         words_to_delete = context.user_data.get('words_to_delete', [])
         if len(words_to_delete) > 0:
             context.bot.send_message(chat_id=update.effective_chat.id, text=f"Words in delete list: {words_to_delete}")
@@ -63,9 +63,6 @@ def list_delete_words(update, context):
 
 list_delete_words_handler = CommandHandler('list_delete_words', list_delete_words)
 dispatcher.add_handler(list_delete_words_handler)
-
-# Define the command for changing the pre-selected username and check if the user is admin
-def change_pre_selected_username(update, context):
 
 # Define the command for adding the bot to a group
 def start(update, context):
@@ -82,14 +79,14 @@ def send_reply(update, context):
 # Define the function to delete messages containing specific words
 def delete_message(update, context):
     message_text = update.message.text.lower()
-    if update.message.from_user.username == pre_selected_username:
+    if update.message.from_user.username == PRE_SELECTED_USERNAME:
         for word in words_to_reply:
             if word in message_text:
                 send_reply(update, context)
                 break
 
     words_to_delete = context.user_data.get('words_to_delete', [])
-    if update.message.from_user.username == pre_selected_username:
+    if update.message.from_user.username == PRE_SELECTED_USERNAME:
         for word in words_to_delete:
             if word in message_text:
                 context.bot.delete_message(chat_id=update.effective_chat.id, message_id=update.message.message_id)
