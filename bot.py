@@ -14,8 +14,8 @@ updater = Updater(token=TOKEN)
 # Get the dispatcher to register handlers
 dispatcher = updater.dispatcher
 
-admin_username = 'Ali_J_Maghari'
-pre_selected_username = 'Ali_J_Maghari'
+admin_username = 'admin_username'
+pre_selected_username = 'pre_selected_username'
 words_to_delete = []  # Add the words you want to delete messages for
 words_to_reply = ['كلمة ٥', 'كلمة ٦']  # Add the words you want to reply to
 
@@ -25,7 +25,7 @@ def add_delete_word(update, context):
         if len(context.args) > 0:
             new_word = ' '.join(context.args)
             # Add the new word to the delete list
-            context.user_data.setdefault('words_to_delete', []).append(new_word)
+            context.user_data.setdefault('delete_words', []).append(new_word)
             context.bot.send_message(chat_id=update.effective_chat.id, text=f"'{new_word}' added to delete list.")
         else:
             context.bot.send_message(chat_id=update.effective_chat.id, text="Please provide a word to add to the delete list.")
@@ -40,10 +40,10 @@ def remove_delete_word(update, context):
     if update.message.from_user.username == admin_username:
         if len(context.args) > 0:
             word_to_remove = ' '.join(context.args)
-            sent_words_to_delete = context.user_data.get('words_to_delete', [])
-            if word_to_remove in sent_words_to_delete:
+            delete_words = context.user_data.get('delete_words', [])
+            if word_to_remove in delete_words:
                 # Remove the word from the delete list
-                words_to_delete.remove(word_to_remove)
+                context.user_data['delete_words'].remove(word_to_remove)
                 context.bot.send_message(chat_id=update.effective_chat.id, text=f"'{word_to_remove}' removed from delete list.")
             else:
                 context.bot.send_message(chat_id=update.effective_chat.id, text=f"'{word_to_remove}' is not in the delete list.")
@@ -76,7 +76,8 @@ def delete_message(update, context):
                 send_reply(update, context)
                 break
 
-    for word in words_to_delete:
+    delete_words = context.user_data.get('delete_words', [])
+    for word in delete_words:
         if word in message_text:
             context.bot.delete_message(chat_id=update.effective_chat.id, message_id=update.message.message_id)
             break
