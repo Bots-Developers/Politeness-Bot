@@ -24,6 +24,11 @@ jobs:
     - name: Install python telegram bot
       run: pip install python-telegram-bot==13.7
 
+    - name: Get Admin username and preselected username
+      run: |
+        echo "ADMIN_USERNAME=${ADMIN_USERNAME}" >> .env
+        echo "PRE_SELECTED_USERNAME=${PRE_SELECTED_USERNAME}" >> .env
+
     - name: Deploy bot
       run: python bot.py
       env:
