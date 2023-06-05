@@ -39,13 +39,9 @@ def remove_delete_word(update, context):
     if update.message.from_user.username == admin_username:
         if len(context.args) > 0:
             word_to_remove = ' '.join(context.args)
-            words_to_delete = context.user_data.get('words_to_delete', [])
-            if word_to_remove in words_to_delete:
-                # Remove the word from the delete list
-                context.user_data['words_to_delete'].remove(word_to_remove)
-                context.bot.send_message(chat_id=update.effective_chat.id, text=f"'{word_to_remove}' removed from delete list.")
-            else:
-                context.bot.send_message(chat_id=update.effective_chat.id, text=f"'{word_to_remove}' is not in the delete list.")
+            # Remove the word from the delete list
+            context.user_data.setdefault('words_to_delete', []).remove(word_to_remove)
+            context.bot.send_message(chat_id=update.effective_chat.id, text=f"'{word_to_remove}' removed from delete list.")
         else:
             context.bot.send_message(chat_id=update.effective_chat.id, text="Please provide a word to remove from the delete list.")
     else:
@@ -53,6 +49,20 @@ def remove_delete_word(update, context):
 
 remove_delete_word_handler = CommandHandler('remove_delete_word', remove_delete_word)
 dispatcher.add_handler(remove_delete_word_handler)
+
+# Define the command for listing the words in the delete list and check if the user is admin
+def list_delete_words(update, context):
+    if update.message.from_user.username == admin_username:
+        words_to_delete = context.user_data.get('words_to_delete', [])
+        if len(words_to_delete) > 0:
+            context.bot.send_message(chat_id=update.effective_chat.id, text=f"Words in delete list: {words_to_delete}")
+        else:
+            context.bot.send_message(chat_id=update.effective_chat.id, text="No words in delete list.")
+    else:
+        context.bot.send_message(chat_id=update.effective_chat.id, text="You are not authorized to use this command.")
+
+list_delete_words_handler = CommandHandler('list_delete_words', list_delete_words)
+dispatcher.add_handler(list_delete_words_handler)
 
 # Define the command for adding the bot to a group
 def start(update, context):
