@@ -73,7 +73,7 @@ dispatcher.add_handler(start_handler)
 
 # Define the function to send a reply message
 def send_reply(update, context):
-    reply_text = "This is a reply message from the bot."
+    reply_text = "الخول بسب قاعد, تسبش ي خول 🖕🏽"
     context.bot.send_message(chat_id=update.message.chat_id, text=reply_text, reply_to_message_id=update.message.message_id)
 
 # Define the function to delete messages containing specific words
