@@ -7,12 +7,8 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 
 # Retrieve the bot token from the repository secrets or environment variables
 TOKEN = os.getenv('TOKEN')
-ADMIN_USERNAME = os.getenv('ADMIN_NAME')
-PRE_SELECTED_USERNAME = os.getenv('SELECTED_USER')
-
-logging.info(f"Bot token: {TOKEN}")
-logging.info(f"Admin username: {ADMIN_USERNAME}")
-logging.info(f"Selected user: {PRE_SELECTED_USERNAME}")
+ADMIN_USERNAME = os.getenv('ADMIN_USERNAME')
+PRE_SELECTED_USERNAME = os.getenv('PRE_SELECTED_USERNAME')
 
 # Create an updater and pass in your bot token
 updater = Updater(token=TOKEN)
