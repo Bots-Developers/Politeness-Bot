@@ -15,7 +15,7 @@ updater = Updater(token=TOKEN)
 dispatcher = updater.dispatcher
 
 admin_username = 'Ali_J_Maghari'
-pre_selected_username = 'Ali_J_Maghari'
+pre_selected_username = 'Ali_J_Maghari' #aalustath01
 words_to_reply = ['عرصات' , 'عرص' , 'كلب' , 'خولات', 'خول', 'الكلب']  # Add the words you want to reply to
 
 # Define the command for adding a word to the delete list and check if the user is admin
@@ -73,7 +73,7 @@ dispatcher.add_handler(start_handler)
 
 # Define the function to send a reply message
 def send_reply(update, context):
-    reply_text = f"الخول بسب قاعد, تسبش ي خول 🖕🏽 {update.message.from_user.mention_markdown()}"
+    reply_text = f"الخول بسب قاعد, تسبش ي خول 🖕🏽 @{update.message.from_user.username}"
     context.bot.send_message(chat_id=update.message.chat_id, text=reply_text, reply_to_message_id=update.message.message_id)
 
 # Define the function to delete messages containing specific words
