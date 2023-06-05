@@ -14,8 +14,8 @@ updater = Updater(token=TOKEN)
 # Get the dispatcher to register handlers
 dispatcher = updater.dispatcher
 
-admin_username = 'admin_username'
-pre_selected_username = 'pre_selected_username'
+admin_username = 'Ali_J_Maghari'
+pre_selected_username = 'Ali_J_Maghari'
 words_to_delete = []  # Add the words you want to delete messages for
 words_to_reply = ['كلمة ٥', 'كلمة ٦']  # Add the words you want to reply to
 
