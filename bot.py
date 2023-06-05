@@ -15,7 +15,7 @@ updater = Updater(token=TOKEN)
 dispatcher = updater.dispatcher
 
 admin_username = 'Ali_J_Maghari'
-pre_selected_username = 'Ali_J_Maghari' #aalustath01
+pre_selected_username = 'aalustath01'
 words_to_reply = ['عرصات' , 'عرص' , 'كلب' , 'خولات', 'خول', 'الكلب']  # Add the words you want to reply to
 
 # Define the command for adding a word to the delete list and check if the user is admin
