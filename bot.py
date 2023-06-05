@@ -40,7 +40,8 @@ def remove_delete_word(update, context):
     if update.message.from_user.username == admin_username:
         if len(context.args) > 0:
             word_to_remove = ' '.join(context.args)
-            if word_to_remove in words_to_delete:
+            sent_words_to_delete = context.user_data.get('words_to_delete', [])
+            if word_to_remove in sent_words_to_delete:
                 # Remove the word from the delete list
                 words_to_delete.remove(word_to_remove)
                 context.bot.send_message(chat_id=update.effective_chat.id, text=f"'{word_to_remove}' removed from delete list.")
