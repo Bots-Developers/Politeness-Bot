@@ -86,11 +86,11 @@ def delete_message(update, context):
                 break
 
     words_to_delete = context.user_data.get('words_to_delete', [])
-    #if update.message.from_user.username == pre_selected_username:
-    for word in words_to_delete:
-        if word in message_text:
-            context.bot.delete_message(chat_id=update.effective_chat.id, message_id=update.message.message_id)
-            break
+    if update.message.from_user.username == pre_selected_username:
+        for word in words_to_delete:
+            if word in message_text:
+                context.bot.delete_message(chat_id=update.effective_chat.id, message_id=update.message.message_id)
+                break
 
 delete_handler = MessageHandler(Filters.text, delete_message)
 dispatcher.add_handler(delete_handler)
