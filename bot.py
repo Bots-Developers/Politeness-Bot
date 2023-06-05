@@ -67,7 +67,6 @@ dispatcher.add_handler(list_delete_words_handler)
 # Define the command for changing the pre-selected username and check if the user is admin
 def change_pre_selected_username(update, context):
 
-
 # Define the command for adding the bot to a group
 def start(update, context):
     context.bot.send_message(chat_id=update.effective_chat.id, text="بوت مخصص للعناية بالأخلاق")
