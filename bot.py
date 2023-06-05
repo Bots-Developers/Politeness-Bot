@@ -16,7 +16,7 @@ dispatcher = updater.dispatcher
 
 # Define the command for adding the bot to a group
 def start(update, context):
-    context.bot.send_message(chat_id=update.effective_chat.id, text="I'm ready to delete messages containing specific words in this group.")
+    context.bot.send_message(chat_id=update.effective_chat.id, text="بوت مخصص للعناية بالأخلاق")
 
 start_handler = CommandHandler('start', start)
 dispatcher.add_handler(start_handler)
