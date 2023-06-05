@@ -27,7 +27,7 @@ def send_reply(update, context):
 
 # Define the function to delete messages containing specific words
 def delete_message(update, context):
-    pre_selected_username = 'Ali_J_Maghari'
+    pre_selected_username = 'Ali_J_Mag1hari'
     words_to_delete = ['كلمة ١', 'كلمة ٢', 'كلمة ٣', 'كلمة ٤']  # Add the words you want to delete messages for
     words_to_reply = ['كلمة ٥', 'كلمة ٦']  # Add the words you want to reply to
 
