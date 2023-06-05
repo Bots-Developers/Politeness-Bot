@@ -1,11 +1,12 @@
+import os
 import logging
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
 # Set up logging
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 
-# Define your bot token
-TOKEN = '6005891028:AAHJ1sGtywfpmDiQs0nskgBmb55OpiN2Zs0'
+# Retrieve the bot token from the repository secrets or environment variables
+TOKEN = os.getenv('TOKEN')
 
 # Create an updater and pass in your bot token
 updater = Updater(token=TOKEN)
@@ -27,8 +28,8 @@ def send_reply(update, context):
 
 # Define the function to delete messages containing specific words
 def delete_message(update, context):
-    pre_selected_username = 'Ali_J_Mag1hari'
-    words_to_delete = ['كلمة ١', 'كلمة ٢', 'كلمة ٣', 'كلمة ٤']  # Add the words you want to delete messages for
+    pre_selected_username = 'Ali_J_Maghari'
+    words_to_delete = []  # Add the words you want to delete messages for
     words_to_reply = ['كلمة ٥', 'كلمة ٦']  # Add the words you want to reply to
 
     message_text = update.message.text.lower()
