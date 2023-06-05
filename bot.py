@@ -14,6 +14,37 @@ updater = Updater(token=TOKEN)
 # Get the dispatcher to register handlers
 dispatcher = updater.dispatcher
 
+# Define the command for adding a word to the delete list
+def add_delete_word(update, context):
+    if len(context.args) > 0:
+        new_word = ' '.join(context.args)
+        # Add the new word to the delete list
+        context.user_data.setdefault('delete_words', []).append(new_word)
+        context.bot.send_message(chat_id=update.effective_chat.id, text=f"'{new_word}' added to delete list.")
+    else:
+        context.bot.send_message(chat_id=update.effective_chat.id, text="Please provide a word to add to the delete list.")
+
+add_delete_word_handler = CommandHandler('add_delete_word', add_delete_word)
+dispatcher.add_handler(add_delete_word_handler)
+
+# Define the command for removing a word from the delete list
+def remove_delete_word(update, context):
+    if len(context.args) > 0:
+        word_to_remove = ' '.join(context.args)
+        delete_words = context.user_data.get('delete_words', [])
+        if word_to_remove in delete_words:
+            # Remove the word from the delete list
+            delete_words.remove(word_to_remove)
+            context.bot.send_message(chat_id=update.effective_chat.id, text=f"'{word_to_remove}' removed from delete list.")
+        else:
+            context.bot.send_message(chat_id=update.effective_chat.id, text=f"'{word_to_remove}' is not in the delete list.")
+    else:
+        context.bot.send_message(chat_id=update.effective_chat.id, text="Please provide a word to remove from the delete list.")
+
+remove_delete_word_handler = CommandHandler('remove_delete_word', remove_delete_word)
+dispatcher.add_handler(remove_delete_word_handler)
+
+
 # Define the command for adding the bot to a group
 def start(update, context):
     context.bot.send_message(chat_id=update.effective_chat.id, text="بوت مخصص للعناية بالأخلاق")
