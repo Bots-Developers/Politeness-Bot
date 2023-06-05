@@ -7,6 +7,8 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 
 # Retrieve the bot token from the repository secrets or environment variables
 TOKEN = os.getenv('TOKEN')
+admin_username = os.getenv('ADMIN_NAME')
+pre_selected_username = os.getenv('SELECTED_USER')
 
 # Create an updater and pass in your bot token
 updater = Updater(token=TOKEN)
@@ -14,9 +16,7 @@ updater = Updater(token=TOKEN)
 # Get the dispatcher to register handlers
 dispatcher = updater.dispatcher
 
-admin_username = 'Ali_J_Maghari'
-pre_selected_username = 'Ali_J_Maghar1i'
-words_to_reply = ['كلمة ٥', 'كلمة ٦']  # Add the words you want to reply to
+words_to_reply = ['كلب' , 'خولات', 'خول', 'الكلب']  # Add the words you want to reply to
 
 # Define the command for adding a word to the delete list and check if the user is admin
 def add_delete_word(update, context):
@@ -64,6 +64,10 @@ def list_delete_words(update, context):
 list_delete_words_handler = CommandHandler('list_delete_words', list_delete_words)
 dispatcher.add_handler(list_delete_words_handler)
 
+# Define the command for changing the pre-selected username and check if the user is admin
+def change_pre_selected_username(update, context):
+
+
 # Define the command for adding the bot to a group
 def start(update, context):
     context.bot.send_message(chat_id=update.effective_chat.id, text="بوت مخصص للعناية بالأخلاق")
@@ -73,7 +77,7 @@ dispatcher.add_handler(start_handler)
 
 # Define the function to send a reply message
 def send_reply(update, context):
-    reply_text = "This is a reply message from the bot."
+    reply_text = "الخول بسب قاعد, تسبش ي خول 🖕🏽"
     context.bot.send_message(chat_id=update.message.chat_id, text=reply_text, reply_to_message_id=update.message.message_id)
 
 # Define the function to delete messages containing specific words
