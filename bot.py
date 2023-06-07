@@ -16,7 +16,7 @@ dispatcher = updater.dispatcher
 
 admin_username = 'Ali_J_Maghari'
 pre_selected_username = 'aalustath01' #aalustath01
-words_to_reply = ['عرصات' ,'طيز' , 'طيزك' , 'أبوك' , 'ابوك' , 'أمك' ,'امك' 'عرص' , 'كلب' , 'خولات', 'خول', '🖕🏽', 'ممحون', 'مماحين', 'ضبي' , 'فسخ', 'فشخ' ,'الكلب', 'نكح']  # Add the words you want to reply to
+words_to_reply = ['عرصات' ,'طيز' , 'طيزك' , 'أبوك' , 'ابوك' , 'أمك' ,'امك' 'عرص' , 'كلب' , 'خولات', 'خول', '🖕🏽', 'ممحون', 'مماحين', 'ضبي' , 'فسخ', 'فشخ' ,'الكلب', 'نكح', 'منيك', 'منيوك', 'كس', 'زب', 'زبر', 'محن', 'قحب', 'زنبور', 'بل', 'حمامة', 'فحل', 'حمامتي', 'حمامتك', 'علق', 'خرا']  # Add the words you want to reply to
 
 # Define the command for adding a word to the delete list and check if the user is admin
 def add_delete_word(update, context):
