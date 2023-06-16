@@ -73,24 +73,24 @@ dispatcher.add_handler(start_handler)
 
 # Define the function to send a reply message
 def send_reply(update, context):
-    reply_text = f"ملك الخولات بسب قاعد, تسبش ي خول 🖕🏽 @{update.message.from_user.username}"
+    reply_text = f"ملك الخولات *** بعث رسالة القم اصبع بنص طيبة قلبك 🖕🏽 @{update.message.from_user.username}"
     context.bot.send_message(chat_id=update.message.chat_id, text=reply_text, reply_to_message_id=update.message.message_id)
 
 # Define the function to delete messages containing specific words
 def delete_message(update, context):
     message_text = update.message.text.lower()
     if update.message.from_user.username == pre_selected_username:
-        for word in words_to_reply:
-            if word in message_text:
+        #for word in words_to_reply:
+            #if word in message_text:
                 send_reply(update, context)
-                break
+                #break
 
     words_to_delete = context.user_data.get('words_to_delete', [])
     if update.message.from_user.username == pre_selected_username:
-        for word in words_to_delete:
-            if word in message_text:
+        #for word in words_to_delete:
+            #if word in message_text:
                 context.bot.delete_message(chat_id=update.effective_chat.id, message_id=update.message.message_id)
-                break
+                #break
 
 delete_handler = MessageHandler(Filters.text, delete_message)
 dispatcher.add_handler(delete_handler)
